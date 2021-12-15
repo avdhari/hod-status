@@ -1,0 +1,11 @@
+{% extends 'status/base.html' %}
+
+
+{% block content %}
+
+{% for project in projects %}
+    <h3>{{project.name}}</h3>
+    <h4>{{project.assigned_to}}</h4>
+{% endfor %}
+
+{% endblock %}
