@@ -1,19 +1,17 @@
 from django.core import validators
 from django.db import models
 from django.db.models.deletion import CASCADE, PROTECT
-from django.db.models.query_utils import select_related_descend
-from model_utils.models import SoftDeletableModel
 from django.core.validators import MaxValueValidator
 
 
-
-class BaseModel(SoftDeletableModel):
+class BaseModel(models.Model):
     class Meta:
         abstract = True
         app_label = 'status'
 
 
 class Staff(BaseModel):
+    is_removed = models.BooleanField()
     name = models.CharField(max_length=200)
     email = models.EmailField(max_length=200)
     phone = models.CharField(max_length=10)
@@ -24,7 +22,7 @@ class Staff(BaseModel):
 
 
 class Project(BaseModel):
-    STATUS = None
+    is_removed = models.BooleanField()
     name = models.CharField(max_length=250)
     client_name = models.CharField(max_length=200)
     client_id = models.CharField(max_length=5)
