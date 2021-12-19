@@ -14,4 +14,4 @@ class ProjectAdmin(admin.ModelAdmin):
 
 @admin.register(ProgressOfProject)
 class ProgressAdmin(admin.ModelAdmin):
-    list_display = ['project', 'progress']
+    list_display = ['project',  'drawing', 'progress']

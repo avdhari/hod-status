@@ -35,7 +35,8 @@ class Project(BaseModel):
 
 class ProgressOfProject(BaseModel):
     project = models.ForeignKey(Project, on_delete=PROTECT)
+    drawing = models.CharField(max_length=100)
     progress = models.PositiveIntegerField(validators=[MaxValueValidator(100)])
 
     def __str__(self):
-        return self.project.name + " | Drawing " + str(self.id)
+        return self.project.name + " - " + self.drawing
