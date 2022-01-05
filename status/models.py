@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models.deletion import CASCADE, PROTECT
+from django.db.models.deletion import PROTECT
 from django.core.validators import MaxValueValidator
 
 
@@ -36,7 +36,6 @@ class ProgressOfProject(BaseModel):
     project = models.ForeignKey(Project, on_delete=PROTECT)
     drawing = models.CharField(max_length=100)
     progress = models.PositiveIntegerField(validators=[MaxValueValidator(100)])
-
 
     def __str__(self):
         return self.project.name + " - " + self.drawing

@@ -17,4 +17,4 @@ class ProjectAdmin(admin.ModelAdmin):
 @admin.register(ProgressOfProject)
 class ProgressAdmin(admin.ModelAdmin):
     """Custom admin for Progress"""
-    list_display = ['project',  'drawing', 'progress']
+    list_display = ['drawing',  'project', 'progress']
