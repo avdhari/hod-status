@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import Staff, Project, ProgressOfProject
+from .models import User, Project, ProgressOfProject
 
 
-@admin.register(Staff)
-class StaffAdmin(admin.ModelAdmin):
-    """Custom admin for Staff"""
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    """Custom admin for User"""
     list_display = ['name', 'email']
 
 
