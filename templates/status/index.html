@@ -2,8 +2,6 @@
 
 {% block title %} console | hod {% endblock %}
 
-{% load static %}
-
 {% block content %}
 <div class="table-class">
 <table class="table">
@@ -24,27 +22,24 @@
         <td>{{p.project.name}}</td>
         <td>{{p.project.assigned_to}}</td>
         <td>{{p.drawing}}</td>
+
         <td>
             {% if p.progress <= 50 %}
-            <button class="btn btn-danger" type="button">
-                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                {{p.progress}}%
-            </button>
-
+            <div class="progress">
+              <div class="progress-bar bg-danger" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
+            </div>
             <br>
             {% elif p.progress > 50 and p.progress <= 75 %}
-            <button class="btn btn-primary" type="button">
-                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                {{p.progress}}%
-            </button>
+            <div class="progress">
+              <div class="progress-bar bg-warning" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
+            </div>
             <br>
             {% else %}
-            <button class="btn btn-success" type="button">
-                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                {{p.progress}}%
-            </button>
+            <div class="progress">
+              <div class="progress-bar bg-success" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
+            </div>
+            <br>
             {% endif %}
-
         </td>
 
       </tr>
@@ -52,6 +47,41 @@
 
     
 {% endfor %}
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+
+  {% for p in progress %}
+  <div class="col">
+      <div class="card border-dark card-text-main mb-3" style="max-width: 18rem;">
+        <div class="card-header">{{p.project.name}}</div>
+        <div class="card-body">
+          <h5 class="card-title">{{p.project.assigned_to}}</h5>
+          <p class="card-text">{{p.drawing}}</p>
+            {% if p.progress <= 50 %}
+            <div class="progress">
+              <div class="progress-bar bg-danger" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
+            </div>
+
+            <br>
+            {% elif p.progress > 50 and p.progress <= 75 %}
+            <div class="progress">
+              <div class="progress-bar bg-warning" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
+            </div>
+            <br>
+            {% else %}
+            <div class="progress">
+              <div class="progress-bar bg-success" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
+            </div>
+            {% endif %}
+
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+
+
 
 {% endblock %}
 

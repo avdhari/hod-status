@@ -3,64 +3,22 @@
     margin-top: 2rem;
 }
 
-  
-  li .day {
-    font-size: 16pt;
-    height: 30px;
-    width: 150px; 
-    margin: 10px;
-    padding: 5px; 
-    border-radius: 5px;
-    background-color: #ee99ff;
-  }
-  
-  
-  ul {
-    list-style: none;
-  }
-  
-  .bullet-list-round {
-    padding: 0;
-    margin: 0 0 24px 12px;
-    line-height: 1.28571em;
-    margin-left: 14px;
-  }
-  
-  
-  
-  .pool li {
-     margin-top: 6px;
-    margin-bottom: 6px;
-    background-image: url(https://cdn2.iconfinder.com/data/icons/windows-8-metro-style/32/swimming.png);
-    background-size: 13px;
-    background-repeat: no-repeat;
-    padding-left: 20px; 
-    
-  }
-  
-  .bullet-list-round li {
-    margin-top: 6px;
-    margin-bottom: 6px;
-    background-image: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698599-icon-86-document-list-16.png);
-    background-size: 13px;
-    background-repeat: no-repeat;
-    padding-left: 20px;
-  }
-  
-  li.day.folder {
-    
-     list-style-image: 
-      url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698607-icon-94-folder-24.png);
-  }
-  
-  a {
-      color: #000000;
-      cursor: pointer;
-      text-decoration: none;
-  }
-  a:hover {
-      text-decoration: underline;
-  }
-  
+.progress{
+  height: 1.5rem;
+}
 
-  
+.progress-bar{
+  color: #000000;
+  font-size: 1rem;
+  font-weight: bolder;
+}
+ 
+
+.card .progress{
+  height: 2rem;
+}
+
+
+.card{
+  background-color: #f7f7f7;
+}
