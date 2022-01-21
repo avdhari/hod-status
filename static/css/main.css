@@ -6,13 +6,14 @@ html body {
 }
 
 .progress{
-  height: 1.5rem;
+	height: 1.5rem;
+	width: 12rem;
 }
 
 .progress-bar{
-  color: #000000;
-  font-size: 1rem;
-  font-weight: bolder;
+	color: #000000;
+	font-size: 1rem;
+	font-weight: bolder;
 }
  
 
@@ -87,14 +88,6 @@ html body {
 	outline: 0px !important;
 }
 
-#messages{
-	background-color: grey;
-	color: #fff;
-	padding: 10px;
-	margin-top: 10px;
-}
-
-
 .login-logo img{
 	position: absolute;
 	height: 75%;
@@ -106,3 +99,28 @@ html body {
 	color: #c00606;
 	font-weight: 900;
 }
+
+.progress-screenshot{
+	width: 192px;
+	height: 108px;
+}	
+
+.table td, .table th{
+	vertical-align: middle;
+}
+
+.logout{
+	display: flex;
+}
+
+.logout-btn{
+	margin-left: 10px;
+}
+
+.logout .user-name{
+	color: white;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+}
+

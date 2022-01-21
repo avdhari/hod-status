@@ -1,3 +1,4 @@
+from email.policy import default
 from operator import mod
 from pyexpat import model
 from statistics import mode
@@ -47,7 +48,7 @@ class ProgressOfProject(BaseModel):
     project = models.ForeignKey(Project, on_delete=PROTECT)
     drawing = models.CharField(max_length=100)
     progress = models.PositiveIntegerField(validators=[MaxValueValidator(100)])
-    image = models.ImageField()
+    image = models.ImageField(default='logo.jpg')
 
     def __str__(self):
         return self.project.name + " - " + self.drawing

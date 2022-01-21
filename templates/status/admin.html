@@ -12,17 +12,18 @@
         <th scope="col">Staff</th>
         <th scope="col">Drawing</th>
         <th scope="col">Progress</th>
+        <th scope="col">Screenshot</th>
+
 
       </tr>
     </thead>
 {% for p in progress %}
     <tbody>
-      <tr>
+      <tr  class="progress-wrap">
         <!-- <th scope="row">{{p.id}}</th> -->
         <td>{{p.project.name}}</td>
         <td>{{p.project.assigned_to}}</td>
         <td>{{p.drawing}}</td>
-
         <td>
             {% if p.progress <= 50 %}
             <div class="progress">
@@ -40,6 +41,11 @@
             </div>
             <br>
             {% endif %}
+        </td>
+        <td>
+          <a href="{{p.image.url}}" alt="">
+            <img src="{{p.image.url}}" class="progress-screenshot alt="">
+          </a>
         </td>
 
       </tr>
