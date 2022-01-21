@@ -1,0 +1,58 @@
+{% extends 'status/base.html' %}
+
+{% block title %} {{user.name}} | hod {% endblock %}
+
+{% block content %}
+
+<a href="#" class="btn btn-m btn-success" style="margin-top: 10px;">Add Progress</a>
+
+<div class="table-class">
+<table class="table">
+    <thead>
+      <tr>
+        <!-- <th scope="col">Sl No</th> -->
+        <th scope="col">Project</th>
+        <!-- <th scope="col">Staff</th> -->
+        <th scope="col">Drawing</th>
+        <th scope="col">Progress</th>
+
+      </tr>
+    </thead>
+
+    {% for p in progress %}
+        {% if user == p.project.assigned_to %}
+        <tbody>
+        <tr>
+            <!-- <th scope="row">{{p.id}}</th> -->
+            <td>{{p.project.name}}</td>
+            <!-- <td>{{p.project.assigned_to}}</td> -->
+            <td>{{p.drawing}}</td>
+
+            <td>
+                {% if p.progress <= 50 %}
+                <div class="progress">
+                <div class="progress-bar bg-danger" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
+                </div>
+                <br>
+                {% elif p.progress > 50 and p.progress <= 75 %}
+                <div class="progress">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
+                </div>
+                <br>
+                {% else %}
+                <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
+                </div>
+                <br>
+                {% endif %}
+            </td>
+
+        </tr>
+        </tbody>
+        {% endif %}
+
+        
+    {% endfor %}
+
+
+{% endblock %}

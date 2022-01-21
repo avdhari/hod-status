@@ -29,7 +29,7 @@
 
           <div class="input-group mb-2">
             <div class="input-group-append">
-              <span class="input-group-text"><i class="fas fa-key"></i></span>
+              <span class="input-group-text"><i class="fas fa-unlock"></i></span>
             </div>
 
               <input type="password" name="password" placeholder="Password..." class="form-control" >
@@ -38,6 +38,11 @@
             <div class="d-flex justify-content-center mt-3 login_container">
                <input class="btn login_btn" type="submit" value="Login">
                </div>
+            {% if form.errors %}
+              <div class="login-error d-flex justify-content-center mt-3 btn btn-outline-danger">
+                Incorrect Username/Password
+              </div>
+            {% endif %}
         </form>
 
       </div>

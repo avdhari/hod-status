@@ -1,4 +1,6 @@
+from operator import mod
 from pyexpat import model
+from statistics import mode
 from django.db import models
 from django.db.models.deletion import PROTECT
 from django.core.validators import MaxValueValidator
@@ -35,7 +37,7 @@ class Project(BaseModel):
     client_name = models.CharField(max_length=200)
     client_id = models.CharField(max_length=5)
     assigned_to = models.ForeignKey(User, on_delete=PROTECT)
-    is_live = models.BooleanField()
+    is_live = models.BooleanField(default=True)
 
     def __str__(self):
         return str(self.name)
@@ -45,6 +47,7 @@ class ProgressOfProject(BaseModel):
     project = models.ForeignKey(Project, on_delete=PROTECT)
     drawing = models.CharField(max_length=100)
     progress = models.PositiveIntegerField(validators=[MaxValueValidator(100)])
+    image = models.ImageField()
 
     def __str__(self):
         return self.project.name + " - " + self.drawing
