@@ -1,8 +1,8 @@
-import imp
+from dataclasses import fields
+from pyexpat import model
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import  render, redirect
-from .models import User
+from .models import User, ProgressOfProject
 
 
 class NewUserForm(UserCreationForm):
@@ -18,3 +18,9 @@ class NewUserForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+
+class NewProgressForm(forms.ModelForm):
+    class Meta:
+        model = ProgressOfProject
+        fields = '__all__'

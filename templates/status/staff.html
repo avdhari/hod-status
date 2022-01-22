@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<a href="#" class="btn btn-m btn-success" style="margin-top: 10px;">Add Progress</a>
+<a href="{% url 'new-progress' %}" class="btn btn-m btn-success" style="margin-top: 10px;">Add Progress</a>
 
 <div class="table-class">
 <table class="table">
@@ -21,6 +21,8 @@
 
     {% for p in progress %}
         {% if user == p.project.assigned_to %}
+
+        {% if p.is_removed == False %}
         <tbody>
             <tr  class="progress-wrap">
               <td>{{p.project.name}}</td>
@@ -51,7 +53,9 @@
       
             </tr>
           </tbody>
-        {% endif %}
+        {% endif %} <!--curent user-->
+
+        {% endif %} <!--is_removed-->
 
         
     {% endfor %}

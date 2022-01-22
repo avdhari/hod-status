@@ -1,0 +1,14 @@
+{% extends 'status/base.html' %}
+
+{% block title %} new progress | hod {% endblock %}
+
+{% block content %}
+
+<form action="" method="POST" class="new-progress" enctype="multipart/form-data" style="padding-top: 1rem;">
+    {% csrf_token %}
+    {{progress_form.as_p}}
+    <input type="submit" value="Submit" class="btn btn-success">
+</form>
+
+
+{% endblock %}

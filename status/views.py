@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.contrib import messages
-from .forms import NewUserForm
+from .forms import NewUserForm, NewProgressForm
 from .models import Project, ProgressOfProject
 
 
@@ -29,8 +29,8 @@ def base_view(request):
 
 @login_required
 def home_view(request):
-    projects = Project.objects.all()
-    progress = ProgressOfProject.objects.all()
+    projects = Project.objects.all().order_by('-id')
+    progress = ProgressOfProject.objects.all().order_by('-id')
     context = {
         'projects': projects,
         'progress': progress,
@@ -41,3 +41,21 @@ def home_view(request):
         return render(request, 'status/admin.html', context)
     else:
         return render(request, 'status/staff.html', context)
+
+
+def new_progress(request):
+    if request.method == "POST":
+        progress_form = NewProgressForm(request.POST, request.FILES)
+        if progress_form.is_valid():
+            progress_form.save()
+            return redirect('/')
+    progress_form = NewProgressForm()
+    context = {
+        'progress_form': progress_form,
+    }
+    return render(request, 'status/new_progress.html', context)
+
+
+
+
+

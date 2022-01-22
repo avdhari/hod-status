@@ -8,6 +8,7 @@ urlpatterns = [
     path('', views.home_view, name="home"),
     path('base/', views.base_view, name="base"),
     path('register/', views.register_request, name="register"),
+    path('new-progress/', views.new_progress, name='new-progress')
 ]
 
 
