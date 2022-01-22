@@ -1,7 +1,3 @@
-from email.policy import default
-from operator import mod
-from pyexpat import model
-from statistics import mode
 from django.db import models
 from django.db.models.deletion import PROTECT
 from django.core.validators import MaxValueValidator

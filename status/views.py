@@ -54,8 +54,3 @@ def new_progress(request):
         'progress_form': progress_form,
     }
     return render(request, 'status/new_progress.html', context)
-
-
-
-
-
