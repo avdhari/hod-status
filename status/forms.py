@@ -21,4 +21,4 @@ class NewUserForm(UserCreationForm):
 class NewProgressForm(forms.ModelForm):
     class Meta:
         model = ProgressOfProject
-        fields = '__all__'
+        fields = ('project', 'drawing', 'progress', 'image')

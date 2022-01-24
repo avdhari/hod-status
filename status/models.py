@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.deletion import PROTECT
+from django.utils.text import slugify
 from django.core.validators import MaxValueValidator
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
@@ -35,9 +36,15 @@ class Project(BaseModel):
     client_id = models.CharField(max_length=5)
     assigned_to = models.ForeignKey(User, on_delete=PROTECT)
     is_live = models.BooleanField(default=True)
+    slug = models.SlugField(blank=True)
 
     def __str__(self):
         return str(self.name)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super(Project, self).save(*args, **kwargs)
 
 
 class ProgressOfProject(BaseModel):

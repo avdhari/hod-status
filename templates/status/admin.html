@@ -3,90 +3,76 @@
 {% block title %} console | hod {% endblock %}
 
 {% block content %}
-<div class="table-class">
-<table class="table">
-    <thead>
-      <tr>
-        <!-- <th scope="col">Sl No</th> -->
-        <th scope="col">Project</th>
-        <th scope="col">Staff</th>
-        <th scope="col">Drawing</th>
-        <th scope="col">Progress</th>
-        <th scope="col">Screenshot</th>
+<div class="controls">
+  <div class="admin-controls">
+    <a href="#" class="btn btn-success">New Project</a>
+    <a href="#" class="btn btn-warning">New Staff</a>
+  </div>
+</div>
 
 
-      </tr>
-    </thead>
-{% for p in progress %}
-    <tbody>
-      <tr  class="progress-wrap">
-        <!-- <th scope="row">{{p.id}}</th> -->
-        <td>{{p.project.name}}</td>
-        <td>{{p.project.assigned_to}}</td>
-        <td>{{p.drawing}}</td>
-        <td>
-            {% if p.progress <= 50 %}
-            <div class="progress">
-              <div class="progress-bar bg-danger" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
-            </div>
-            <br>
-            {% elif p.progress > 50 and p.progress <= 75 %}
-            <div class="progress">
-              <div class="progress-bar bg-warning" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
-            </div>
-            <br>
-            {% else %}
-            <div class="progress">
-              <div class="progress-bar bg-success" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
-            </div>
-            <br>
-            {% endif %}
-        </td>
-        <td>
-          <a href="{{p.image.url}}" alt="">
-            <img src="{{p.image.url}}" class="progress-screenshot alt="">
-          </a>
-        </td>
+{% for project in projects %}
+ 
 
-      </tr>
-    </tbody>
 
-    
-{% endfor %}
+ <button type="button" class="collapsible">{{project.name}}</button>
+ <div class="collapsible-content">
+  
+      <div class="table-class">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Staff</th>
+                <th scope="col">Drawing</th>
+                <th scope="col">Progress</th>
+                <th scope="col" >Screenshot</th>
+        
+        
+              </tr>
+            </thead>
+            
+          {% for p in progress %}
+            {% if p.project.name == project.name %}
 
-<!-- <div class="row row-cols-1 row-cols-md-3 g-4">
+              
 
-  {% for p in progress %}
-  <div class="col">
-      <div class="card border-dark card-text-main mb-3" style="max-width: 18rem;">
-        <div class="card-header">{{p.project.name}}</div>
-        <div class="card-body">
-          <h5 class="card-title">{{p.project.assigned_to}}</h5>
-          <p class="card-text">{{p.drawing}}</p>
-            {% if p.progress <= 50 %}
-            <div class="progress">
-              <div class="progress-bar bg-danger" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
-            </div>
+                <tbody>
+                  <tr>
+                    <td>{{p.project.assigned_to}}</td>
+                    <td>{{p.drawing}}</td>
+                    <td>
+                        {% if p.progress <= 50 %}
+                        <div class="progress">
+                          <div class="progress-bar bg-danger" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
+                        </div>
+                        <br>
+                        {% elif p.progress > 50 and p.progress <= 75 %}
+                        <div class="progress">
+                          <div class="progress-bar bg-warning" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
+                        </div>
+                        <br>
+                        {% else %}
+                        <div class="progress">
+                          <div class="progress-bar bg-success" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
+                        </div>
+                        <br>
+                        {% endif %}
+                    </td>
+                    <td>
+                      <a href="{{p.image.url}}" target="_blank" alt="">
+                        <img src="{{p.image.url}}" class="progress-screenshot">
+                      </a>
+                    </td>
+            
+                  </tr>
+                </tbody>
+              {% endif %}
+          {% endfor %}
 
-            <br>
-            {% elif p.progress > 50 and p.progress <= 75 %}
-            <div class="progress">
-              <div class="progress-bar bg-warning" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
-            </div>
-            <br>
-            {% else %}
-            <div class="progress">
-              <div class="progress-bar bg-success" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
-            </div>
-            {% endif %}
-
-        </div>
+        </table>
       </div>
     </div>
-  {% endfor %}
-</div> -->
-
-
+{% endfor %}
 
 
 {% endblock %}

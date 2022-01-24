@@ -1,13 +1,25 @@
 html body {
     background-color: #fcfcfc;
 }
+
+a{
+	text-decoration: none;
+}
+
+.base-container{
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
 .table-class{
     margin-top: 2rem;
+	display: flex;
+	align-items: center;
 }
 
 .progress{
 	height: 1.5rem;
-	width: 12rem;
+	width: 20rem;
 }
 
 .progress-bar{
@@ -17,13 +29,16 @@ html body {
 }
  
 
-.card .progress{
-  height: 2rem;
+.card{
+	height: 10rem;
+	width: 18rem;
+	background-color: #f7f7f7;
+	color: black;
 }
 
-
-.card{
-  background-color: #f7f7f7;
+.card-header{
+	font-size: 28px;
+	font-weight: bold;
 }
 
 
@@ -124,3 +139,44 @@ html body {
 	align-items: center;
 }
 
+
+.controls{
+	margin-top: 10px;
+}
+
+.admin-controls{
+	margin-left: auto;
+	margin-right: 0;
+}
+
+
+.collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  margin-top: 10px;
+  font-weight: 800;
+
+}
+
+.collapsible:hover {
+  background-color: #ccc;
+}
+
+.collapsible-content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+
+.nav-brand{
+	margin-left: 20px;
+}

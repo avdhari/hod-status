@@ -4,61 +4,87 @@
 
 {% block content %}
 
-<a href="{% url 'new-progress' %}" class="btn btn-m btn-success" style="margin-top: 10px;">Add Progress</a>
+<div class="controls">
+  <div class="staff-controls">
+    <a href="{% url 'new-progress' %}" class="btn btn-success">Add Progress</a>
+  </div>
+</div>
 
-<div class="table-class">
-<table class="table">
-    <thead>
-      <tr>
-        <!-- <th scope="col">Sl No</th> -->
-        <th scope="col">Project</th>
-        <th scope="col">Drawing</th>
-        <th scope="col">Progress</th>
-        <th scope="col">Screenshot</th>
 
-      </tr>
-    </thead>
 
-    {% for p in progress %}
-        {% if user == p.project.assigned_to %}
 
-        {% if p.is_removed == False %}
-        <tbody>
-            <tr  class="progress-wrap">
-              <td>{{p.project.name}}</td>
-              <td>{{p.drawing}}</td>
-              <td>
-                  {% if p.progress <= 50 %}
-                  <div class="progress">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
-                  </div>
-                  <br>
-                  {% elif p.progress > 50 and p.progress <= 75 %}
-                  <div class="progress">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
-                  </div>
-                  <br>
-                  {% else %}
-                  <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
-                  </div>
-                  <br>
-                  {% endif %}
-              </td>
-              <td>
-                <a href="{{p.image.url}}" alt="">
-                  <img src="{{p.image.url}}" class="progress-screenshot alt="">
-                </a>
-              </td>
-      
-            </tr>
-          </tbody>
-        {% endif %} <!--curent user-->
+{% for project in projects %}
+{% if user == project.assigned_to %}
 
-        {% endif %} <!--is_removed-->
+<button type="button" class="collapsible">
+    {{project.name}}
+</button>
+{% endif %}
 
-        
-    {% endfor %}
+<div class="collapsible-content">
+ 
+     <div class="table-class">
+       <table class="table">
+           <thead>
+             <tr>
+               <th scope="col">Staff</th>
+               <th scope="col">Drawing</th>
+               <th scope="col">Progress</th>
+               <th scope="col" >Screenshot</th>
+       
+       
+             </tr>
+           </thead>
+           
+         {% for p in progress %}
+
+           {% if user == p.project.assigned_to %}
+
+              {% if p.is_removed == False %}
+                  <tbody>
+                      <tr  class="progress-wrap">
+                        <td>{{p.project.name}}</td>
+                        <td>{{p.drawing}}</td>
+                        <td>
+                            {% if p.progress <= 50 %}
+                            <div class="progress">
+                              <div class="progress-bar bg-danger" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
+                            </div>
+                            <br>
+                            {% elif p.progress > 50 and p.progress <= 75 %}
+                            <div class="progress">
+                              <div class="progress-bar bg-warning" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
+                            </div>
+                            <br>
+                            {% else %}
+                            <div class="progress">
+                              <div class="progress-bar bg-success" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
+                            </div>
+                            <br>
+                            {% endif %}
+                        </td>
+                        <td>
+                          <a href="{{p.image.url}}" target="_blank" alt="">
+                            <img src="{{p.image.url}}"  class="progress-screenshot" alt="">
+                          </a>
+                        </td>
+                
+                      </tr>
+                    </tbody>
+                {% endif %} <!--is_removed-->
+
+            {% endif %} <!--curent user-->
+            
+         {% endfor %}
+
+       </table>
+     </div>
+   </div>
+  {% endfor %}
 
 
 {% endblock %}
+
+
+ 
+
