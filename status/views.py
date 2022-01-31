@@ -1,10 +1,8 @@
-from cmath import log
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import login
 from django.contrib import messages
-from django.template import context
 from .forms import NewUserForm, NewProgressForm
 from .models import Project, ProgressOfProject
 
@@ -34,7 +32,6 @@ def base_view(request):
 def home_view(request):
     current_user = request.user
     projects = Project.objects.all().order_by('-id')
-    project = Project.objects.get(assigned_to=current_user)
     progress = ProgressOfProject.objects.all().order_by('-id')
 
     context = {
