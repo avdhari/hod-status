@@ -7,7 +7,6 @@ from .forms import NewUserForm, NewProgressForm
 from .models import Project, ProgressOfProject
 
 
-@login_required
 def register_request(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)

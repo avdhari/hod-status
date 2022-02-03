@@ -180,3 +180,40 @@ a{
 .nav-brand{
 	margin-left: 20px;
 }
+
+.reg-btn{
+	width: 50px;
+}
+
+.reg-container {
+	margin-top: 3rem;
+}
+
+.reg_card {
+	width: 450px;
+	height: 500px;
+	margin-top: auto;
+	margin-bottom: auto;
+	background: #838383;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding: 10px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	border-radius: 10px;
+
+}
+
+.reg-container{
+	position: absolute;
+ 
+    right: 15rem;
+	bottom: 3rem;
+}
+
+.reg-form{
+	width: 20rem;
+}

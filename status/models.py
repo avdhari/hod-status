@@ -48,11 +48,11 @@ class Project(BaseModel):
 
 
 class ProgressOfProject(BaseModel):
-    is_removed = models.BooleanField()
+    is_removed = models.BooleanField(default=False)
     project = models.ForeignKey(Project, on_delete=PROTECT)
     drawing = models.CharField(max_length=100)
     progress = models.PositiveIntegerField(validators=[MaxValueValidator(100)])
-    image = models.ImageField(upload_to='media/')
+    image = models.ImageField()
 
     def __str__(self):
         return self.project.name + " - " + self.drawing
