@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import login
 from django.contrib import messages
+from django.core.mail import EmailMessage
+
 from .forms import NewUserForm, NewProgressForm
 from .models import Project, ProgressOfProject
 
@@ -20,8 +22,11 @@ def register_request(request):
     context = {
         "register_form": form,
         }
-    return render(request, "status/user_registration.html", context)
+    return render(request, "registration/user_registration.html", context)
 
+
+def password_reset(request):
+    return render(request, 'registration/password_reset.html')
 
 def base_view(request):
     return render(request, 'status/base.html')

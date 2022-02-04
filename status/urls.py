@@ -9,6 +9,8 @@ urlpatterns = [
     path('base/', views.base_view, name="base"),
     path('register/', views.register_request, name="register"),
     path('new-progress/', views.new_progress, name="new-progress"),
+    path('password-reset/', views.password_reset, name="password-reset"),
+
 ]
 
 
