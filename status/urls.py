@@ -10,6 +10,8 @@ urlpatterns = [
     path('register/', views.register_request, name="register"),
     path('new-progress/', views.new_progress, name="new-progress"),
     path('password-reset/', views.password_reset, name="password-reset"),
+    path('users/', views.user_list_view, name="users"),
+    path('users/<int:pk>', views.user_detail_view, name="user-detail"),
 
 ]
 
