@@ -3,84 +3,147 @@
 {% block title %} console | hod {% endblock %}
 
 {% block content %}
-<div class="controls">
-  <div class="admin-controls">
-    <a href="#" class="btn btn-success">New Project</a>
-    <a href="#" class="btn btn-warning">New Staff</a>
-  </div>
-</div>
 
 
-{% for project in projects %}
- 
+<div class="admin-page">
+      <div class="row">
+        <div class="col-8">
 
+          <div class="project-progress">
 
- <button type="button" class="collapsible">{{project.name}}</button>
- <div class="collapsible-content">
-   <div>
-    Client Name : {{project.client_name}}
+            {% for project in projects %}
+              <button type="button" class="collapsible">{{project.name}}</button>
+          <div class="collapsible-content">
+          
+                <div class="table-class">
+                  <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Staff</th>
+                          <th scope="col">Drawing</th>
+                          <th scope="col">Progress</th>
+                          <th scope="col" >Screenshot</th>
+                  
+                  
+                        </tr>
+                      </thead>
+                      
+                    {% for p in progress %}
+                      {% if p.project.name == project.name %}              
 
-   </div>
-  <div>
-    Client ID   : {{project.client_id}}
-  </div>      
-  
-      <div class="table-class">
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Staff</th>
-                <th scope="col">Drawing</th>
-                <th scope="col">Progress</th>
-                <th scope="col" >Screenshot</th>
-        
-        
-              </tr>
-            </thead>
-            
-          {% for p in progress %}
-            {% if p.project.name == project.name %}
-
-              
-
-                <tbody>
-                  <tr>
-                    <td>{{p.project.assigned_to}}</td>
-                    <td>{{p.drawing}}</td>
-                    <td>
-                        {% if p.progress <= 50 %}
-                        <div class="progress">
-                          <div class="progress-bar bg-danger" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
-                        </div>
-                        <br>
-                        {% elif p.progress > 50 and p.progress <= 75 %}
-                        <div class="progress">
-                          <div class="progress-bar bg-warning" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
-                        </div>
-                        <br>
-                        {% else %}
-                        <div class="progress">
-                          <div class="progress-bar bg-success" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
-                        </div>
-                        <br>
+                          <tbody>
+                            <tr>
+                              <td>{{p.project.assigned_to}}</td>
+                              <td>{{p.drawing}}</td>
+                              <td>
+                                  {% if p.progress <= 50 %}
+                                  <div class="progress">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
+                                  </div>
+                                  <br>
+                                  {% elif p.progress > 50 and p.progress <= 75 %}
+                                  <div class="progress">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
+                                  </div>
+                                  <br>
+                                  {% else %}
+                                  <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
+                                  </div>
+                                  <br>
+                                  {% endif %}
+                              </td>
+                              <td>
+                                <a href="{{p.image.url}}" target="_blank" alt="">
+                                  <img src="{{p.image.url}}" class="progress-screenshot">
+                                </a>
+                              </td>
+                      
+                            </tr>
+                          </tbody>
                         {% endif %}
-                    </td>
-                    <td>
-                      <a href="{{p.image.url}}" target="_blank" alt="">
-                        <img src="{{p.image.url}}" class="progress-screenshot">
-                      </a>
-                    </td>
-            
-                  </tr>
-                </tbody>
-              {% endif %}
+                    {% endfor %}
+
+                  </table>
+                </div>
+              </div>
           {% endfor %}
-
-        </table>
+          
+          
+          </div>
       </div>
+      <div class="col-4">
+        <div class="project-card">
+          <div class="card bg-light" style="width: 35rem; height: 25rem;">
+            <div class="card-header">
+              Project Control
+                <div class="new-instance">
+                    <a href="#" class="btn btn-danger">New Project</a>
+                </div>
+            </div>
+            <div class="table-class-admin">
+              <table class="table">
+                <tr>
+                  <th scope="col">Project</th>
+                  <th scope="col">Staff</th>
+                  <th scope="col">Client</th>
+                </tr>
+              </table>
+            </div>
+
+            <div class="scroll">
+              <div class="table-class-admin">
+                <table class="table">
+                    {% for project in projects %}
+                          <tr>
+                            <td><a href="{% url 'user-detail' user.pk %}">{{project.name}}</a></td>
+                            <td>{{project.assigned_to}}</td>
+                            <td>{{project.client_name}}</td>                   
+                          </tr>
+                    {% endfor %}
+                  </table>
+              </div>
+            </div>
+          </div>
+        </div>  
+
+        <div class="user-card">
+          <div class="card bg-light" style="width: 35rem; height: 25rem;">
+            <div class="card-header">
+              Staff Control
+                <div class="new-instance">
+                   <a href="#" class="btn btn-danger">New Staff</a>
+                </div>
+            </div>
+            <div class="table-class-admin">
+              <table class="table">
+                <tr>
+                  <th scope="col">Staff</th>
+                  <th scope="col">Level</th>
+                  <th scope="col">Admin</th>
+                </tr>
+              </table>
+            </div>
+
+            <div class="scroll">
+              <div class="table-class-admin">
+                <table class="table">
+                    {% for staff in staffs %}
+                          <tr>
+                            <td><a href="{% url 'user-detail' user.pk %}">{{staff.name}}</a></td>
+                            <td>{{staff.designation}}</td>
+                            <td>{{staff.is_superuser}}</td>                   
+                          </tr>
+                    {% endfor %}
+                  </table>
+              </div>
+            </div>
+        </div>  
+      </div>
+
     </div>
-{% endfor %}
+  </div>
 
-
+</div>
 {% endblock %}
 

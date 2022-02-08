@@ -37,13 +37,15 @@
            </thead>
            
          {% for p in progress %}
+         {% if p.project.name == project.name %}              
+
 
            {% if user == p.project.assigned_to %}
 
               {% if p.is_removed == False %}
                   <tbody>
                       <tr  class="progress-wrap">
-                        <td>{{p.project.name}}</td>
+                        <td>{{p.project.assigned_to}}</td>
                         <td>{{p.drawing}}</td>
                         <td>
                             {% if p.progress <= 50 %}
@@ -74,6 +76,7 @@
                 {% endif %} <!--is_removed-->
 
             {% endif %} <!--curent user-->
+          {% endif %}
             
          {% endfor %}
 

@@ -17,6 +17,12 @@ a{
 	align-items: center;
 }
 
+
+.table-class-admin{
+	display: flex;
+	align-items: center;
+}
+
 .progress{
 	height: 1.5rem;
 	width: 20rem;
@@ -216,4 +222,31 @@ a{
 
 .reg-form{
 	width: 20rem;
+}
+
+
+.admin-page{
+	margin-top: 10px;
+}
+
+.project-progress{
+	max-width: 70rem;
+}
+
+.project-card{
+	margin-top: 10px;
+}
+
+.user-card{
+	margin-top: 10px;
+}
+
+
+.scroll {
+    overflow-y: auto;
+}
+
+.new-instance{
+	display: inline;
+	float: right;
 }

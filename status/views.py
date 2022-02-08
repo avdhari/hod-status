@@ -1,10 +1,7 @@
-import imp
-from operator import mod
-from pyexpat import model
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotAllowed
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import login
@@ -47,18 +44,19 @@ def password_reset(request):
 @login_required
 def home_view(request):
     current_user = request.user
-    projects = Project.objects.all().order_by('-id')
+    projects = Project.objects.all().order_by('id')
     progress = ProgressOfProject.objects.all().order_by('-id')
-
+    staffs = User.objects.filter(is_active=True).order_by('date_joined')
     context = {
         'projects': projects,
         'progress': progress,
+        'staffs': staffs,
     }
-
     if current_user.is_superuser:
         return render(request, 'status/admin.html', context)
     else:
         return render(request, 'status/staff.html', context)
+
 
 
 @login_required
@@ -75,18 +73,30 @@ def new_progress(request):
     return render(request, 'status/new_progress.html', context)
 
 
-class UserListView(SuperUserMixin, generic.ListView, ):
-    model = User
-    template_name = 'status/userlist.html'
-    ordering = 'date_joined'
+@login_required
+def user_list_view(request):
+    current_user = request.user
+    staffs = User.objects.filter(is_active=True).order_by('date_joined')
+
+    context = {
+        'staffs': staffs,
+    }
+    if current_user.is_superuser:
+        return render(request, 'status/userlist.html', context)
+    else:
+        return HttpResponse("Not allowed")
 
 
-user_list_view = UserListView.as_view()
-
-
-class UserDeatailView(SuperUserMixin, generic.DetailView):
-    model = User
-    template_name = 'status/user_detail.html'
-
-
-user_detail_view = UserDeatailView.as_view()
+@login_required
+def user_detail_view(request, pk):
+    current_user = request.user
+    staff = User.objects.get(id=pk)
+    projects = Project.objects.filter(assigned_to=staff)
+    context = {
+        'staff': staff,
+        'projects': projects,
+    }
+    if current_user.is_superuser:
+        return render(request, 'status/user_detail.html', context)
+    else:
+        return HttpResponse("Not allowed")
