@@ -1,0 +1,75 @@
+{% extends 'status/base.html' %}
+
+{% block title %} new project | hod {% endblock %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="login-logo">
+	<img src="{% static '/images/logo.jpg' %}" alt="">
+	
+  </div>
+  
+  
+  <div class="reg-container h-100">
+	<div class="d-flex justify-content-center h-100">
+	  <div class="reg_card">
+		<div class="d-flex justify-content-center">
+		  <h3 id="form-title">add new project</h3>
+		</div>
+		<div class="d-flex justify-content-center form_container">
+		  <form method="POST" action="">
+				{% csrf_token %}
+				
+				<div class="input-group mb-3">
+					<div class="input-group-append">
+						<span class="input-group-text"><i class="fas fa-drafting-compass"></i>name</span>
+					</div>	
+					<input type="text" name="name" placeholder="name..." class="form-control">
+				</div>
+	
+				<div class="input-group mb-3">
+					<div class="input-group-append">
+						<span class="input-group-text"><i class="fas fa-handshake"></i>client name</span>
+					</div>
+					<input type="text" name="client_name" placeholder="name of client..." class="form-control">
+				</div>
+	
+				<div class="input-group mb-3">
+					<div class="input-group-append">
+						<span class="input-group-text"><i class="fas fa-id-card"></i>client id</span>
+					</div>	
+					<input type="text" name="client_id" placeholder="client id..." class="form-control">
+				</div>
+	
+				<div class="input-group mb-3">
+					<div class="input-group-append">
+						<span class="input-group-text"><i class="fas fa-user-check"></i>assigned to</span>
+					</div>
+                    <div class="dropdown" style="width: 45px;">
+                        {{project_form.assigned_to}}
+                    </div>
+				</div>
+
+				<div class="d-flex justify-content-center mt-3 login_container">
+					<input class="btn login_btn" type="submit" value="add project">
+
+				</div>
+	
+
+		{% if form.non_field_errors %}
+		<div class="login-error d-flex justify-content-center mt-3 btn btn-outline-danger">
+			{{form.non_field_errors}}
+		</div>
+		{% endif %}
+
+				
+		  </form>
+  
+		</div>
+	  </div>
+	</div>
+  </div>
+
+{% endblock %}

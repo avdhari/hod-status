@@ -7,7 +7,7 @@
 
 <div class="admin-page">
       <div class="row">
-        <div class="col-8">
+        <div class="col-9">
 
           <div class="project-progress">
 
@@ -72,13 +72,13 @@
           
           </div>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <div class="project-card">
-          <div class="card bg-light" style="width: 35rem; height: 25rem;">
+          <div class="card bg-light border-dark" style="width: 32rem; height: 25rem;">
             <div class="card-header">
               Project Control
                 <div class="new-instance">
-                    <a href="#" class="btn btn-danger">New Project</a>
+                    <a href="{% url 'new-project' %}" class="btn btn-danger">New Project</a>
                 </div>
             </div>
             <div class="table-class-admin">
@@ -92,11 +92,11 @@
             </div>
 
             <div class="scroll">
-              <div class="table-class-admin">
+              <div class="table-class-admin table-striped">
                 <table class="table">
                     {% for project in projects %}
                           <tr>
-                            <td><a href="{% url 'user-detail' user.pk %}">{{project.name}}</a></td>
+                            <td><a href="{% url 'project-detail' project.slug %}">{{project.name}}</a></td>
                             <td>{{project.assigned_to}}</td>
                             <td>{{project.client_name}}</td>                   
                           </tr>
@@ -108,11 +108,11 @@
         </div>  
 
         <div class="user-card">
-          <div class="card bg-light" style="width: 35rem; height: 25rem;">
+          <div class="card bg-light border-dark" style="width: 32rem; height: 25rem;">
             <div class="card-header">
               Staff Control
                 <div class="new-instance">
-                   <a href="#" class="btn btn-danger">New Staff</a>
+                   <a href="{% url 'register' %}" class="btn btn-danger">New Staff</a>
                 </div>
             </div>
             <div class="table-class-admin">
@@ -126,7 +126,7 @@
             </div>
 
             <div class="scroll">
-              <div class="table-class-admin">
+              <div class="table-class-admin table-striped">
                 <table class="table">
                     {% for staff in staffs %}
                           <tr>

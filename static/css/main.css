@@ -99,10 +99,18 @@ a{
 }
 .input-group-text {
 	background: #5a5a5a !important;
-	color: white !important;
+	color: #d8d8d8 !important;
 	border: 0 !important;
 	border-radius: 0.25rem 0 0 0.25rem !important;
+	width: 138px;
+	font-weight: 600;
 }
+
+
+.fas{
+	padding-right: 10px;
+}
+
 .input_user,
 .input_pass:focus {
 	box-shadow: none !important;
@@ -157,8 +165,8 @@ a{
 
 
 .collapsible {
-  background-color: #eee;
-  color: #444;
+  background-color: #b9b9b9;
+  color: rgb(34, 33, 33);
   cursor: pointer;
   padding: 18px;
   width: 100%;
@@ -168,6 +176,7 @@ a{
   font-size: 15px;
   margin-top: 10px;
   font-weight: 800;
+  border: 1px solid #0c0069;
 
 }
 

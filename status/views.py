@@ -8,7 +8,7 @@ from django.contrib.auth import login
 from django.contrib import messages
 from django.core.mail import EmailMessage, send_mail
 
-from .forms import NewUserForm, NewProgressForm
+from .forms import NewProjectForm, NewUserForm, NewProgressForm
 from .models import Project, ProgressOfProject, User
 
 
@@ -44,8 +44,8 @@ def password_reset(request):
 @login_required
 def home_view(request):
     current_user = request.user
-    projects = Project.objects.all().order_by('id')
-    progress = ProgressOfProject.objects.all().order_by('-id')
+    projects = Project.objects.filter(is_removed=False).order_by('-id')
+    progress = ProgressOfProject.objects.filter(is_removed=False).order_by('-id')
     staffs = User.objects.filter(is_active=True).order_by('date_joined')
     context = {
         'projects': projects,
@@ -56,7 +56,6 @@ def home_view(request):
         return render(request, 'status/admin.html', context)
     else:
         return render(request, 'status/staff.html', context)
-
 
 
 @login_required
@@ -72,6 +71,28 @@ def new_progress(request):
     }
     return render(request, 'status/new_progress.html', context)
 
+
+@login_required
+def new_project(request):
+    if request.method == "POST":
+        project_form = NewProjectForm(request.POST)
+        if project_form.is_valid():
+            project_form.save()
+            return redirect('/')
+    project_form = NewProjectForm()
+    context = {
+        'project_form': project_form,
+    }
+
+    return render(request, 'status/new_project.html', context)
+
+
+def project_detail_view(request, slug):
+    project = Project.objects.get(slug=slug)
+    context = {
+        'project':project,
+    }
+    return render(request, 'status/project_detail.html', context)
 
 @login_required
 def user_list_view(request):

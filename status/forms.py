@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import User, ProgressOfProject
+from .models import Project, User, ProgressOfProject
 
 
 class NewUserForm(UserCreationForm):
@@ -22,3 +22,9 @@ class NewProgressForm(forms.ModelForm):
     class Meta:
         model = ProgressOfProject
         fields = ('project', 'drawing', 'progress', 'image')
+
+
+class NewProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ('name', 'client_name', 'client_id', 'assigned_to')

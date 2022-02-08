@@ -1,0 +1,17 @@
+{% extends 'status/base.html' %}
+
+{% block title %} hod | project: {{project.name}} {% endblock %}
+
+{% block content %}
+<h1>
+{{project.name}}
+</h1>
+
+<ul>
+    <li>edit details</li>
+    <li>re-assign</li>
+    <li>is_live: either completed or decommissioned</li>
+    <li>is_removed: completed and removed</li>
+</ul>
+
+{% endblock %}
