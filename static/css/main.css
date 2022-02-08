@@ -56,11 +56,11 @@ a{
 }
 
 .user_card {
-	width: 420px;
+	width: 450px;
 	height: 350px;
 	margin-top: auto;
 	margin-bottom: auto;
-	background: #aaaaaa;
+	background: #838383;
 	position: relative;
 	display: flex;
 	justify-content: center;
@@ -69,8 +69,7 @@ a{
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	border-radius: 20px;
-
+	border-radius: 10px;
 }
 
 .form_container {
@@ -102,7 +101,7 @@ a{
 	color: #d8d8d8 !important;
 	border: 0 !important;
 	border-radius: 0.25rem 0 0 0.25rem !important;
-	width: 138px;
+	width: 135px;
 	font-weight: 600;
 }
 
@@ -221,6 +220,7 @@ a{
 	border-radius: 10px;
 
 }
+
 
 .reg-container{
 	position: absolute;
