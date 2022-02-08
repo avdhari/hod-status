@@ -30,7 +30,7 @@ class User(AbstractUser):
 
 
 class Project(BaseModel):
-    is_removed = models.BooleanField()
+    is_removed = models.BooleanField(default=False)
     name = models.CharField(max_length=250)
     client_name = models.CharField(max_length=200)
     client_id = models.CharField(max_length=5)
