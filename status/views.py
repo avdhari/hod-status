@@ -101,7 +101,6 @@ def project_detail_view(request, slug):
 
 
 @login_required
-@user_passes_test(lambda user: user.is_superuser)
 def user_list_view(request):
     current_user = request.user
     staffs = User.objects.filter(is_active=True).order_by('date_joined')
@@ -116,7 +115,6 @@ def user_list_view(request):
 
 
 @login_required
-@user_passes_test(lambda user: user.is_superuser)
 def user_detail_view(request, pk):
     current_user = request.user
     staff = User.objects.get(id=pk)
