@@ -21,6 +21,8 @@ def base_view(request):
     return render(request, 'status/base.html')
 
 
+@login_required
+@user_passes_test(lambda user: user.is_superuser)
 def register_request(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
@@ -73,6 +75,7 @@ def new_progress(request):
 
 
 @login_required
+@user_passes_test(lambda user: user.is_superuser)
 def new_project(request):
     if request.method == "POST":
         project_form = NewProjectForm(request.POST)
@@ -87,14 +90,18 @@ def new_project(request):
     return render(request, 'status/new_project.html', context)
 
 
+@login_required
+@user_passes_test(lambda user: user.is_superuser)
 def project_detail_view(request, slug):
     project = Project.objects.get(slug=slug)
     context = {
-        'project':project,
+        'project': project,
     }
     return render(request, 'status/project_detail.html', context)
 
+
 @login_required
+@user_passes_test(lambda user: user.is_superuser)
 def user_list_view(request):
     current_user = request.user
     staffs = User.objects.filter(is_active=True).order_by('date_joined')
@@ -109,6 +116,7 @@ def user_list_view(request):
 
 
 @login_required
+@user_passes_test(lambda user: user.is_superuser)
 def user_detail_view(request, pk):
     current_user = request.user
     staff = User.objects.get(id=pk)
