@@ -22,8 +22,8 @@ class User(AbstractUser):
     last_name = None  # type: ignore
     name = models.CharField(_("Name of User"), blank=True, max_length=255)
     email = models.EmailField(max_length=200)
-    phone = models.CharField(max_length=10)
-    designation = models.CharField(max_length=10, choices=DESIGNATION)
+    phone = models.CharField(max_length=10, blank=True)
+    designation = models.CharField(max_length=10, choices=DESIGNATION, blank=True)
 
     def __str__(self):
         return self.name
