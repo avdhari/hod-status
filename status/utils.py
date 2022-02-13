@@ -14,7 +14,7 @@ def send_password_reset_mail(user):
     mail_template = 'registration/password_reset.html'
     subject = 'password reset | hod'
     message = ''
-    domain = 'http://127.0.0.1:8000'
+    domain = settings.DOMAIN
     password_reset_url = f'{domain}/reset/{uid}/{token}'
 
     ctx = {
