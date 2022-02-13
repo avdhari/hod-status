@@ -14,7 +14,6 @@ from pathlib import Path
 import os
 import environ
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,6 +30,7 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['hod-status.herokuapp.com'])
+DOMAIN = env('DOMAIN')
 
 
 # Application definition

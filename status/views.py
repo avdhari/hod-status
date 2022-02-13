@@ -1,12 +1,10 @@
 from django.shortcuts import render, redirect
-from django.views import generic
+# from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.http import HttpResponse, HttpResponseNotAllowed
-from django.utils.decorators import method_decorator
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import login
 from django.contrib import messages
-from django.core.mail import EmailMessage, send_mail
 
 from .forms import NewProjectForm, NewUserForm, NewProgressForm
 from .models import Project, ProgressOfProject, User
