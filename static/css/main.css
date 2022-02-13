@@ -84,7 +84,7 @@ a{
 }
 
 .login_btn {
-	width: 100%;
+	width: 150px;
 	background: #262626 !important;
 	color: white !important;
 	font-weight: bolder;
@@ -258,4 +258,32 @@ a{
 .new-instance{
 	display: inline;
 	float: right;
+}
+
+.new-progress{
+	width: 500px;
+	padding-top: 1rem;
+	margin-left: auto;
+	margin-right: 0;
+}
+
+.new-progress-container{
+	width: 600px;
+	height: 550px;
+	margin-top: 5%;
+	margin-bottom: auto;
+	background: #838383;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding: 10px;
+	border-radius: 10px;
+
+}
+
+.new-user-error{
+	color: #fff;
+	background: #F93154;
+	font-weight: 900;
 }

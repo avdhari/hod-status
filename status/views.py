@@ -24,6 +24,7 @@ def base_view(request):
 @login_required
 @user_passes_test(lambda user: user.is_superuser)
 def register_request(request):
+    projects = Project.objects.all()
     if request.method == "POST":
         form = NewUserForm(request.POST)
         if form.is_valid():
@@ -34,7 +35,8 @@ def register_request(request):
         messages.error(request, "Unsuccessful registration. Invalid information.")
     form = NewUserForm()
     context = {
-        "register_form": form,
+        'register_form': form,
+        'projects': projects,
         }
     return render(request, "registration/user_registration.html", context)
 
@@ -62,12 +64,12 @@ def home_view(request):
 
 @login_required
 def new_progress(request):
-    if request.method == "POST":
-        progress_form = NewProgressForm(request.POST, request.FILES)
+    if request.POST and request.FILES:
+        progress_form = NewProgressForm(request.user, request.POST, request.FILES)
         if progress_form.is_valid():
             progress_form.save()
             return redirect('/')
-    progress_form = NewProgressForm()
+    progress_form = NewProgressForm(request.user)
     context = {
         'progress_form': progress_form,
     }
@@ -83,8 +85,11 @@ def new_project(request):
             project_form.save()
             return redirect('/')
     project_form = NewProjectForm()
+    current_user = request.user
+    projects = Project.objects.filter(assigned_to=current_user)
     context = {
         'project_form': project_form,
+        'projects': projects,
     }
 
     return render(request, 'status/new_project.html', context)

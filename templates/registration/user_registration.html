@@ -63,16 +63,12 @@
 					<input class="btn login_btn" type="submit" value="add user">
 
 				</div>
-
-
-		{% if form.non_field_errors %}
-		<div class="login-error d-flex justify-content-center mt-3 btn btn-outline-danger">
-			{{form.non_field_errors}}
-		</div>
-		{% endif %}
-
-		<!--{{ register_form|crispy }} -->
-				
+		
+				{% if messages %}
+					{% for message in messages %}
+					<div class="new-user-error d-flex justify-content-center mt-3 btn btn-danger">{{ message }}</div>
+					{% endfor %}
+				{% endif %}
 		  </form>
   
 		</div>

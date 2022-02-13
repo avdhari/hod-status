@@ -3,12 +3,59 @@
 {% block title %} new progress | hod {% endblock %}
 
 {% block content %}
+                
+        <div class="d-flex justify-content-center">
+            <div class="new-progress-container ">
+          <div class="d-flex justify-content-center">
+            <h3 id="form-title">add new progress</h3>
+          </div>
+                <form action="" method="POST" class="new-progress" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-drafting-compass"></i>project</span>
+                            </div>	
+                            <!-- <input type="text" name="name" placeholder="name..." class="form-control"> -->
+                            {{progress_form.project}}
+                        </div>
+            
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-handshake"></i>drawing</span>
+                            </div>
+                            <input type="text" name="drawing" placeholder="" class="form-control" style="max-width: 200px;">
+                        </div>
+            
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-id-card"></i>progress</span>
+                            </div>	
+                            <!-- <input type="text" name="client_id" placeholder="client id..." class="form-control"> -->
+                        
+                            {{progress_form.progress}}
+                        </div>
+            
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user-check"></i>screenshot</span>
+                            </div>
+                            <div class="dropdown" style="width: 45px;">
+                                {{progress_form.image}}
+                            </div>
+                        </div>
+            
+                        <div class="d-flex justify-content-center mt-3 login_container">
+                            <input class="btn login_btn" type="submit" value="add progress">
+            
+                        </div>
+            
+                </form>
+            
+            </div>
+            
 
-<form action="" method="POST" class="new-progress" enctype="multipart/form-data" style="padding-top: 1rem;">
-    {% csrf_token %}
-    {{progress_form.as_p}}
-    <input type="submit" value="Submit" class="btn btn-success">
-</form>
-
+        </div>
+        
 
 {% endblock %}

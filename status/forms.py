@@ -19,9 +19,14 @@ class NewUserForm(UserCreationForm):
 
 
 class NewProgressForm(forms.ModelForm):
+
     class Meta:
         model = ProgressOfProject
         fields = ('project', 'drawing', 'progress', 'image')
+
+    def __init__(self, user, *args, **kwargs):
+        super(NewProgressForm, self).__init__(*args, **kwargs)
+        self.fields['project'].queryset = Project.objects.filter(assigned_to=user, is_removed=False)
 
 
 class NewProjectForm(forms.ModelForm):
