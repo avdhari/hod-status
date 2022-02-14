@@ -3,12 +3,12 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Project, User, ProgressOfProject
 
 
-class NewUserForm(UserCreationForm):
+class NewUserForm(forms.ModelForm):
     email = forms.EmailField(required=True)
 
     class Meta:
         model = User
-        fields = ("name", "username", "email", "password1", "password2")
+        fields = ("name", "username", "email")
 
     def save(self, commit=True):
         user = super(NewUserForm, self).save(commit=False)

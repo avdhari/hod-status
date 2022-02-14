@@ -8,6 +8,7 @@ from django.contrib import messages
 
 from .forms import NewProjectForm, NewUserForm, NewProgressForm
 from .models import Project, ProgressOfProject, User
+from .tasks import send_onboarding_mail, resend_password_reset_mail
 
 
 class SuperUserMixin(LoginRequiredMixin, UserPassesTestMixin):
@@ -26,9 +27,8 @@ def register_request(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            login(request, user)
-            messages.success(request, "Registration successful.")
+            form.save()
+            send_onboarding_mail.apply_async(args=[form.instance.id])
             return redirect("/")
         messages.error(request, "Unsuccessful registration. Invalid information.")
     form = NewUserForm()
@@ -130,3 +130,11 @@ def user_detail_view(request, pk):
         return render(request, 'status/user_detail.html', context)
     else:
         return HttpResponse("Not allowed")
+
+
+@login_required
+@user_passes_test(lambda user: user.is_superuser)
+def resend_password_reset(request, pk):
+    staff = User.objects.get(id=pk)
+    resend_password_reset_mail.apply_async(args=[staff.pk])
+    return render(request, 'registration/password_reset_sent.html')

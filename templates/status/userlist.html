@@ -16,15 +16,15 @@
         </thead>
 
 
-        {% for user in staffs %}
+        {% for staff in staffs %}
 
           
 
             <tbody>
               <tr>
-                <td><a href="{% url 'user-detail' user.pk %}">{{user.name}}</a></td>
-                <td>{{user.designation}}</td>
-                <td>{{user.is_superuser}}</td>
+                <td><a href="{% url 'user-detail' staff.pk %}">{{staff.name}}</a></td>
+                <td>{{staff.designation}}</td>
+                <td>{{staff.is_superuser}}</td>
        
               </tr>
             </tbody>
