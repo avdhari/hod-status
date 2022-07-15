@@ -2,3 +2,4 @@
 Makefile
 *.pyc
 media/
+.vscode/
