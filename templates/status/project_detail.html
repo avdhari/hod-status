@@ -3,15 +3,93 @@
 {% block title %} hod | project: {{project.name}} {% endblock %}
 
 {% block content %}
-<h1>
-{{project.name}}
-</h1>
 
-<ul>
-    <li>edit details</li>
-    <li>re-assign</li>
-    <li>is_live: either completed or decommissioned</li>
-    <li>is_removed: completed and removed</li>
-</ul>
+<div class="row">
+    <div class="col-4">
+        <div class="admin-controls">
+            <h1>
+                {{project.name}}
+                </h1>
+            
+                <div style="width: 150px; border: 1px solid; padding: 5px 7px; margin-bottom: 10px;">
+                    <h4>Status: </h4>
+                    {% if project.is_live %}
+                        <div class="btn btn-sm btn-success" style="float: right; margin-top: -35px;  font-weight: bold;">Live</div>
+                    {% else %}
+                    <div class="btn btn-sm btn-danger" style="display: inline; float: right; font-weight: bold;">Removed</div>
+                    {% endif %}
+                </div>
+            
+                <a href="#" class="btn btn-warning">Edit Project</a>
+                <a href="#" class="btn btn-secondary">Re-assign</a>
+                
+
+                <br><br>
+            
+                <ul>
+                    <li>edit details</li>
+                    <li>re-assign</li>
+                    <li>is_live: either completed or decommissioned</li>
+                    <li>is_removed: completed and removed</li>
+                </ul>
+        </div>
+    </div>
+    
+    <div class="col-8">
+        <div class="table-class">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Staff</th>
+                    <th scope="col">Drawing</th>
+                    <th scope="col">Progress</th>
+                    <th scope="col" >Screenshot</th>
+            
+            
+                  </tr>
+                </thead>
+                
+              {% for p in progress %}
+                {% if p.project.name == project.name %}              
+
+                    <tbody>
+                      <tr>
+                        <td>{{p.project.assigned_to}}</td>
+                        <td>{{p.drawing}}</td>
+                        <td>
+                            {% if p.progress <= 50 %}
+                            <div class="progress">
+                              <div class="progress-bar bg-danger" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
+                            </div>
+                            <br>
+                            {% elif p.progress > 50 and p.progress <= 75 %}
+                            <div class="progress">
+                              <div class="progress-bar bg-warning" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
+                            </div>
+                            <br>
+                            {% else %}
+                            <div class="progress">
+                              <div class="progress-bar bg-success" role="progressbar" style="width: {{p.progress}}%">{{p.progress}}%</div>
+                            </div>
+                            <br>
+                            {% endif %}
+                        </td>
+                        <td>
+                          <a href="{{p.image.url}}" target="_blank" alt="">
+                            <img src="{{p.image.url}}" class="progress-screenshot">
+                          </a>
+                        </td>
+                
+                      </tr>
+                    </tbody>
+                  {% endif %}
+              {% endfor %}
+
+            </table>
+          </div>          
+    </div>
+
+</div>
+
 
 {% endblock %}

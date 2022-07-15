@@ -97,8 +97,10 @@ def new_project(request):
 @user_passes_test(lambda user: user.is_superuser)
 def project_detail_view(request, slug):
     project = Project.objects.get(slug=slug)
+    progress = ProgressOfProject.objects.filter(project=project)
     context = {
         'project': project,
+        'progress': progress,
     }
     return render(request, 'status/project_detail.html', context)
 
