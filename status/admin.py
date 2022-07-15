@@ -5,7 +5,7 @@ from .models import User, Project, ProgressOfProject
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     """Custom admin for User"""
-    list_display = ['name', 'email', 'is_active', 'is_superuser']
+    list_display = ['name', 'email', 'is_active', 'is_superuser', 'last_login']
 
 
 @admin.register(Project)
