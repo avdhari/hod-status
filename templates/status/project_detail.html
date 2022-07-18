@@ -10,8 +10,10 @@
             <h1>
                 {{project.name}}
                 </h1>
-            
-                <div style="width: 150px; border: 1px solid; padding: 5px 7px; margin-bottom: 10px;">
+                  <div class="btn" style="background-color: {{btn_color}}; margin-bottom: 10px;">
+                    <strong>Deadline: {{d_day}}</strong>
+                </div>
+                <div style="width: 150px; border: 1px solid; border-radius: 5px; padding: 5px 7px; margin-bottom: 10px;">
                     <h4>Status: </h4>
                     {% if project.is_live %}
                         <div class="btn btn-sm btn-success" style="float: right; margin-top: -35px;  font-weight: bold;">Live</div>

@@ -1,3 +1,4 @@
+from datetime import date
 from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
@@ -5,7 +6,7 @@ from django.utils.http import urlsafe_base64_encode, int_to_base36
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 
-from .models import User
+from .models import User, Project
 
 
 def send_password_reset_mail(user):

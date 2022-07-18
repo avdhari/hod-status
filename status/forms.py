@@ -32,4 +32,5 @@ class NewProgressForm(forms.ModelForm):
 class NewProjectForm(forms.ModelForm):
     class Meta:
         model = Project
-        fields = ('name', 'client_name', 'client_id', 'assigned_to')
+        fields = ('name', 'client_name', 'client_id', 'assigned_to', 'deadline', )
+

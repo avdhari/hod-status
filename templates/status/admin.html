@@ -78,7 +78,7 @@
             <div class="card-header">
               Project Control
                 <div class="new-instance">
-                    <a href="{% url 'new-project' %}" class="btn btn-danger">New Project</a>
+                    <a href="{% url 'new-project' %}" class="btn btn-dark">New Project</a>
                 </div>
             </div>
             <div class="table-class-admin">
@@ -87,6 +87,8 @@
                   <th scope="col">Project</th>
                   <th scope="col">Staff</th>
                   <th scope="col">Client</th>
+                  <th scope="col">Deadline</th>
+
                 </tr>
               </table>
             </div>
@@ -99,6 +101,7 @@
                             <td><a href="{% url 'project-detail' project.slug %}">{{project.name}}</a></td>
                             <td>{{project.assigned_to}}</td>
                             <td>{{project.client_name}}</td>                   
+                            <td class="btn btn-sm text-light" style="margin: 3px 2px; height: 40px; background-color:{{project.get_remaining_days}}">{{project.deadline}}</td>                   
                           </tr>
                     {% endfor %}
                   </table>
@@ -112,7 +115,7 @@
             <div class="card-header">
               Staff Control
                 <div class="new-instance">
-                   <a href="{% url 'register' %}" class="btn btn-danger">New Staff</a>
+                   <a href="{% url 'register' %}" class="btn btn-dark">New Staff</a>
                 </div>
             </div>
             <div class="table-class-admin">
@@ -120,7 +123,7 @@
                 <tr>
                   <th scope="col">Staff</th>
                   <th scope="col">Level</th>
-                  <th scope="col">Admin</th>
+                  <th scope="col">Last Login</th>
                 </tr>
               </table>
             </div>
@@ -132,7 +135,7 @@
                           <tr>
                             <td><a href="{% url 'user-detail' staff.pk %}">{{staff.name}}</a></td>
                             <td>{{staff.designation}}</td>
-                            <td>{{staff.is_superuser}}</td>                   
+                            <td>{{staff.last_login}}</td>                   
                           </tr>
                     {% endfor %}
                   </table>

@@ -1,3 +1,4 @@
+from datetime import date
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models.deletion import PROTECT
@@ -37,6 +38,7 @@ class Project(BaseModel):
     assigned_to = models.ForeignKey(User, on_delete=PROTECT)
     is_live = models.BooleanField(default=True)
     slug = models.SlugField(blank=True)
+    deadline = models.DateField()
 
     def __str__(self):
         return str(self.name)
@@ -45,6 +47,18 @@ class Project(BaseModel):
         if not self.slug:
             self.slug = slugify(self.name)
         super(Project, self).save(*args, **kwargs)
+
+    def get_remaining_days(self):
+        today = date.today()
+        delta = self.deadline - today
+        btn_color = ''
+        if delta.days > 2:
+            btn_color = '#00B74A'
+        elif delta.days == 2:
+            btn_color = '#FFA900'
+        else:
+            btn_color = '#F93154'
+        return btn_color
 
 
 class ProgressOfProject(BaseModel):
