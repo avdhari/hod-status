@@ -11,10 +11,10 @@ class UserAdmin(admin.ModelAdmin):
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
     """Custom admin for Project"""
-    list_display = ['name', 'client_name', 'client_id', 'assigned_to', 'is_live', 'is_removed']
+    list_display = ['name', 'client_name', 'client_id', 'assigned_to', 'is_live', 'is_removed', 'added_on', ]
 
 
 @admin.register(ProgressOfProject)
 class ProgressAdmin(admin.ModelAdmin):
     """Custom admin for Progress"""
-    list_display = ['drawing',  'project', 'progress']
+    list_display = ['drawing',  'project', 'progress', 'upload_date']

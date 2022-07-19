@@ -38,6 +38,7 @@ class Project(BaseModel):
     assigned_to = models.ForeignKey(User, on_delete=PROTECT)
     is_live = models.BooleanField(default=True)
     slug = models.SlugField(blank=True)
+    added_on = models.DateTimeField(auto_now_add=True)
     deadline = models.DateField()
 
     def __str__(self):
@@ -67,7 +68,7 @@ class ProgressOfProject(BaseModel):
     drawing = models.CharField(max_length=100)
     progress = models.PositiveIntegerField(validators=[MaxValueValidator(100)])
     image = models.ImageField(null=True, blank=True)
-    
+    upload_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.project.name + " - " + self.drawing
