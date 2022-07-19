@@ -66,7 +66,8 @@ class ProgressOfProject(BaseModel):
     project = models.ForeignKey(Project, on_delete=PROTECT)
     drawing = models.CharField(max_length=100)
     progress = models.PositiveIntegerField(validators=[MaxValueValidator(100)])
-    image = models.ImageField()
+    image = models.ImageField(null=True, blank=True)
+    
 
     def __str__(self):
         return self.project.name + " - " + self.drawing
