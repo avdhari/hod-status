@@ -86,7 +86,6 @@
                 <tr>
                   <th scope="col">Project</th>
                   <th scope="col">Staff</th>
-                  <th scope="col">Client</th>
                   <th scope="col">Deadline</th>
 
                 </tr>
@@ -100,7 +99,6 @@
                           <tr>
                             <td><a href="{% url 'project-detail' project.slug %}">{{project.name}}</a></td>
                             <td>{{project.assigned_to}}</td>
-                            <td>{{project.client_name}}</td>                   
                             <td class="btn btn-sm text-light" style="margin: 3px 2px; height: 40px; background-color:{{project.get_remaining_days}}">{{project.deadline}}</td>                   
                           </tr>
                     {% endfor %}
