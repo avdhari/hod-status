@@ -120,9 +120,9 @@ def user_list_view(request):
 
 
 @login_required
-def user_detail_view(request, pk):
+def user_detail_view(request, username):
     current_user = request.user
-    staff = User.objects.get(id=pk)
+    staff = User.objects.get(username=username)
     projects = Project.objects.filter(assigned_to=staff)
     context = {
         'staff': staff,

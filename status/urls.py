@@ -13,7 +13,7 @@ urlpatterns = [
     path('projects/<str:slug>', views.project_detail_view, name="project-detail"),
     path('password-reset/', views.password_reset, name="password-reset"),
     path('users/', views.user_list_view, name="users"),
-    path('users/<int:pk>', views.user_detail_view, name="user-detail"),
+    path('users/<str:username>', views.user_detail_view, name="user-detail"),
     path('user/<int:pk>/send-password-reset', views.resend_password_reset, name='send-password-reset')
 
 ]
