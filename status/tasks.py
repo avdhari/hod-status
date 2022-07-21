@@ -1,4 +1,3 @@
-from curses.ascii import US
 from .celery import app
 
 
