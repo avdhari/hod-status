@@ -2,8 +2,6 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import Project, User, ProgressOfProject
 
-from bootstrap_datepicker_plus.widgets import DatePickerInput
-
 
 IS_LIVE = (
     (True, 'Yes'),
