@@ -2,6 +2,14 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import Project, User, ProgressOfProject
 
+from bootstrap_datepicker_plus.widgets import DatePickerInput
+
+
+IS_LIVE = (
+    (True, 'Yes'),
+    (False, 'No')
+)
+
 
 class NewUserForm(forms.ModelForm):
     email = forms.EmailField(required=True)
@@ -33,4 +41,6 @@ class NewProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ('name', 'client_name', 'client_id', 'assigned_to', 'deadline', )
-
+        widgets = {
+            'deadline': forms.DateInput(attrs={'type': 'date'}),
+        }
