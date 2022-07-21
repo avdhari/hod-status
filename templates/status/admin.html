@@ -135,7 +135,7 @@
                 <table class="table">
                     {% for staff in staffs %}
                           <tr>
-                            <td><a href="{% url 'user-detail' staff.pk %}">{{staff.name}}</a></td>
+                            <td><a href="{% url 'user-detail' staff.username %}">{{staff.name}}</a></td>
                             <td>{{staff.designation}}</td>
                             <td>{{staff.last_login}}</td>                   
                           </tr>
