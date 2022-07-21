@@ -11,6 +11,7 @@ urlpatterns = [
     path('new-progress/', views.new_progress, name="new-progress"),
     path('new-project/', views.new_project, name="new-project"),
     path('projects/<str:slug>', views.project_detail_view, name="project-detail"),
+    path('projects/<str:slug>/edit', views.edit_project_view, name="edit-project"),
     path('password-reset/', views.password_reset, name="password-reset"),
     path('users/', views.user_list_view, name="users"),
     path('users/<str:username>', views.user_detail_view, name="user-detail"),

@@ -2,7 +2,7 @@ from django import forms
 from .models import Project, User, ProgressOfProject
 
 
-IS_LIVE = (
+BOOL_LIST = (
     (True, 'Yes'),
     (False, 'No')
 )
@@ -40,4 +40,16 @@ class NewProjectForm(forms.ModelForm):
         fields = ('name', 'client_name', 'client_id', 'assigned_to', 'deadline', )
         widgets = {
             'deadline': forms.DateInput(attrs={'type': 'date'}),
+        }
+
+
+class EditProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ('name', 'client_name', 'client_id', 'assigned_to', 'deadline', 'is_live', 'is_removed',)
+        # is_live = forms.ChoiceField(choices=BOOL_LIST)
+        widgets = {
+            'deadline': forms.DateInput(attrs={'type': 'date'}),
+            'is_live' : forms.Select(choices=BOOL_LIST),
+            'is_removed': forms.Select(choices=BOOL_LIST),
         }

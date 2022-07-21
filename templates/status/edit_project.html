@@ -1,0 +1,100 @@
+{% extends 'status/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %} hod | edit: {{project}} {% endblock %}
+
+
+{% block content %}
+
+<div class="login-logo">
+	<img src="{% static '/images/logo.jpg' %}" alt="">
+	
+  </div>
+  
+  
+  <div class="reg-container h-100">
+	<div class="d-flex justify-content-center h-100">
+	  <div class="edit-project">
+		<div class="d-flex justify-content-center">
+		  <h3 id="form-title">add new project</h3>
+		</div>
+		<div class="d-flex justify-content-center form_container">
+		  <form method="POST" action="">
+				{% csrf_token %}
+				
+				<div class="input-group mb-3">
+					<div class="input-group-append">
+						<span class="input-group-text"><i class="fas fa-drafting-compass"></i>name</span>
+					</div>	
+					<!-- <input type="text" name="name" placeholder="name..." class="form-control"> -->
+					{{edit_form.name}}
+				</div>
+	
+				<div class="input-group mb-3">
+					<div class="input-group-append">
+						<span class="input-group-text"><i class="fas fa-handshake"></i>client name</span>
+					</div>
+					<!-- <input type="text" name="client_name" placeholder="name of client..." class="form-control"> -->
+					{{edit_form.client_name}}
+				</div>
+	
+				<div class="input-group mb-3">
+					<div class="input-group-append">
+						<span class="input-group-text"><i class="fas fa-id-card"></i>client id</span>
+					</div>	
+					<!-- <input type="text" name="client_id" placeholder="client id..." class="form-control"> -->
+					{{edit_form.client_id}}
+				</div>
+	
+				<div class="input-group mb-3">
+					<div class="input-group-append">
+						<span class="input-group-text"><i class="fas fa-user-check"></i>assigned to</span>
+					</div>
+                        {{edit_form.assigned_to}}
+				</div>
+				<div class="input-group mb-3">
+					<div class="input-group-append">
+						<span class="input-group-text"><i class="fas fa-calendar-day"></i>deadline</span>
+					</div>
+                    <div class="" style="" >
+                        {{edit_form.deadline}}
+	                </div>
+				</div>
+				<div class="input-group mb-3">
+					<div class="input-group-append">
+						<span class="input-group-text"><i class="fas fa-check"></i>live</span>
+					</div>
+                        {{edit_form.is_live}}
+				    </div>
+				<div class="input-group mb-3">
+					<div class="input-group-append">
+						<span class="input-group-text"><i class="fas fa-solid fa-ban"></i>removed</span>
+					</div>
+                        {{edit_form.is_removed}}
+	                </div>
+				</div>
+		
+	 	            <!-- {{edit_form | crispy}} -->
+				
+				<div class="d-flex justify-content-center mt-3 login_container">
+					<input class="btn login_btn" type="submit" value="save">
+				</div>
+	
+
+				{% if form.non_field_errors %}
+				<div class="login-error d-flex justify-content-center mt-3 btn btn-outline-danger">
+					{{form.non_field_errors}}
+				</div>
+				{% endif %}		
+		  </form>
+  
+		</div>
+	  </div>
+	</div>
+  </div>
+
+
+
+{% endblock %}
+

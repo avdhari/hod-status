@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 # from django.contrib.auth import login
 from django.contrib import messages
 
-from .forms import NewProjectForm, NewUserForm, NewProgressForm
+from .forms import NewProjectForm, NewUserForm, NewProgressForm, EditProjectForm
 from .models import Project, ProgressOfProject, User
 from .tasks import send_onboarding_mail, resend_password_reset_mail
 
@@ -132,6 +132,21 @@ def user_detail_view(request, username):
         return render(request, 'status/user_detail.html', context)
     else:
         return HttpResponse("Not allowed")
+
+
+@login_required
+def edit_project_view(request, slug):
+    project = Project.objects.get(slug=slug)
+    if request.method == 'POST':
+        edit_form = EditProjectForm(request.POST, instance=project)
+        if edit_form.is_valid():
+            edit_form.save()
+            return redirect(f'/projects/{slug}')
+    edit_form = EditProjectForm(instance=project)
+    context = {
+        'edit_form': edit_form,
+    }
+    return render(request, 'status/edit_project.html', context)
 
 
 @login_required
