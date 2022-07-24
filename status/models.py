@@ -31,12 +31,17 @@ class User(AbstractUser):
 
 
 class Project(BaseModel):
+    STATUS_TYPE = [
+        ('in_progress', 'In Progress'),
+        ('on_hold', 'On Hold'),
+        ('done', 'Done!')
+    ]
     is_removed = models.BooleanField(default=False)
     name = models.CharField(max_length=250)
     client_name = models.CharField(max_length=200)
     client_id = models.CharField(max_length=5)
     assigned_to = models.ForeignKey(User, on_delete=PROTECT)
-    is_live = models.BooleanField(default=True)
+    status = models.CharField(max_length=25, choices=STATUS_TYPE)
     slug = models.SlugField(blank=True)
     added_on = models.DateTimeField(auto_now_add=True)
     deadline = models.DateField()
