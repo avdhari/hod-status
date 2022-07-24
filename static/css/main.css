@@ -176,6 +176,7 @@ a{
   margin-top: 10px;
   font-weight: 800;
   border: 1px solid #0c0069;
+  border-radius: .5rem;	
 
 }
 
@@ -290,9 +291,9 @@ a{
 
 
 .edit-project{
-	width: 500px;
-	height: 600px;
-	margin-top: auto;
+	width: 550px;
+	height: 650px;
+	margin-top: 30%;
 	margin-bottom: auto;
 	background: #838383;
 	position: relative;
