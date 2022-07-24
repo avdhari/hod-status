@@ -1,6 +1,6 @@
 {% extends 'status/base.html' %}
 
-{% block title %} hod | project: {{project.name}} {% endblock %}
+{% block title %} hod | {{project.name}} {% endblock %}
 
 {% block content %}
 
@@ -13,13 +13,9 @@
                   <div class="btn" style="background-color: {{btn_color}}; margin-bottom: 10px;">
                     <strong>Deadline: {{project.deadline}}</strong>
                 </div>
-                <div style="width: 150px; border: 1px solid; border-radius: 5px; padding: 5px 7px; margin-bottom: 10px;">
+                <div style="width: 200px; border: 1px solid; border-radius: 5px; padding: 5px 7px; margin-bottom: 10px;">
                     <h4>Status: </h4>
-                    {% if project.is_live %}
-                        <div class="btn btn-sm btn-success" style="float: right; margin-top: -35px;  font-weight: bold;">Live</div>
-                    {% else %}
-                    <div class="btn btn-sm btn-danger" style="display: inline; float: right; font-weight: bold;">Removed</div>
-                    {% endif %}
+                        <div class="btn btn-sm btn-success" style="float: right; margin-top: -35px; font-weight: bold;">{{project.get_status_display}}</div>
                 </div>
             
                 <a href="{% url 'edit-project' project.slug %}" class="btn btn-warning">Edit Project</a>
