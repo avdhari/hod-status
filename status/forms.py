@@ -7,6 +7,12 @@ BOOL_LIST = (
     (False, 'No')
 )
 
+STATUS_TYPE = [
+    ('in_progress', 'In Progress'),
+    ('on_hold', 'On Hold'),
+    ('done', 'Done!')
+]
+
 
 class NewUserForm(forms.ModelForm):
     email = forms.EmailField(required=True)
@@ -46,10 +52,10 @@ class NewProjectForm(forms.ModelForm):
 class EditProjectForm(forms.ModelForm):
     class Meta:
         model = Project
-        fields = ('name', 'client_name', 'client_id', 'assigned_to', 'deadline', 'is_live', 'is_removed',)
+        fields = ('name', 'client_name', 'client_id', 'assigned_to', 'deadline', 'status', 'is_removed',)
         # is_live = forms.ChoiceField(choices=BOOL_LIST)
         widgets = {
             'deadline': forms.DateInput(attrs={'type': 'date'}),
-            'is_live' : forms.Select(choices=BOOL_LIST),
+            'status': forms.Select(choices=STATUS_TYPE),
             'is_removed': forms.Select(choices=BOOL_LIST),
         }

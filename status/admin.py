@@ -11,7 +11,7 @@ class UserAdmin(admin.ModelAdmin):
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
     """Custom admin for Project"""
-    list_display = ['name', 'client_name', 'client_id', 'assigned_to', 'is_live', 'is_removed', 'added_on', ]
+    list_display = ['name', 'client_name', 'client_id', 'assigned_to', 'status', 'is_removed', 'added_on', ]
 
 
 @admin.register(ProgressOfProject)
