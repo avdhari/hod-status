@@ -145,6 +145,7 @@ def edit_project_view(request, slug):
     edit_form = EditProjectForm(instance=project)
     context = {
         'edit_form': edit_form,
+        'project': project,
     }
     return render(request, 'status/edit_project.html', context)
 
